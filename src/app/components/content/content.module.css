@@ -1,0 +1,111 @@
+.main {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.reserveSection {
+    width: 100%;
+    color: #e6e1e5;
+}
+
+.reservePanel {
+    margin: 0 10%;
+    border: 1px solid #938f99;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.reservePanelHeader {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+    padding: 8px 0;
+    margin: 4px 0;
+}
+
+.reservePanelContent {
+    width: 100%;
+    padding: 8px 0;
+    margin: 4px 0;
+
+    .panelDescription p {
+        margin-top: 4px;
+        font-size: 14px;
+        line-height: 1.4286;
+    }
+}
+
+.addressSection {
+    margin-top: 20px;
+}
+
+.addressSection p {
+    margin-top: 2px;
+    font-size: 14px;
+    line-height: 1.4286;
+}
+
+.textSection {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #e6e1e5;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #e6e1e5;
+    padding: 8px 16px;
+    margin: 4px 0;
+}
+
+.transactionSection p {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.4286;
+    font-family: Roboto, Noto, Arial, sans-serif;
+}
+
+.solSection p {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.4286;
+    font-family: Roboto, Noto, Arial, sans-serif;
+}
+
+.buttonSection {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonSection button {
+    border-radius: 100px;
+    color: #d0bcff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 24px;
+    min-height: 40px;
+    letter-spacing: 0.1px;
+    background-image: none;
+    background-color: transparent;
+    border: 1px solid #e6e1e5;
+}
+
+.buttonSection button:hover {
+    opacity: 80%;
+}
+
+.buttonSection button:disabled {
+    opacity: 50%;
+}
+
+.signaturePanel {
+    margin: 20px 10%;
+    border: 1px solid #938f99;
+    border-radius: 12px;
+    padding: 15px;
+}

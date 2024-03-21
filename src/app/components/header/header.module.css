@@ -1,0 +1,11 @@
+.navSection {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.description {
+    color: #e6e1e5;
+    padding-left: 50px;
+}
+
