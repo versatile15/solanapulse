@@ -7,8 +7,9 @@ import {cookieToInitialState} from 'wagmi'
 import {config} from '@/config'
 import Web3ModalProvider from '@/context'
 import React from "react";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Web3PhantomProvider from "@/app/phantomProvider";
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -24,10 +25,14 @@ export default function RootLayout
     const initialState = cookieToInitialState(config, headers().get('cookie'))
     return (
         <html lang="en">
-            <body>
-                <ToastContainer />
-                <Web3ModalProvider initialState={initialState}>{children}</Web3ModalProvider>
-            </body>
+        <body>
+        <ToastContainer/>
+        <Web3ModalProvider initialState={initialState}>
+            <Web3PhantomProvider>
+                {children}
+            </Web3PhantomProvider>
+        </Web3ModalProvider>
+        </body>
         </html>
     )
 }

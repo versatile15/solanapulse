@@ -5,6 +5,10 @@ import {signMessage} from "@wagmi/core";
 import {config} from '@/config';
 import {abi} from "@/app/abis/solregister";
 import {toast} from "react-toastify";
+import {useWallet} from "@solana/wallet-adapter-react";
+import dynamic from "next/dynamic";
+
+const Wallets = dynamic(() => import("../wallets/wallets"), {ssr: false});
 
 export default function Content() {
     const {address, isConnected} = useAccount();
@@ -14,6 +18,7 @@ export default function Content() {
     const contractAddress = "0x3bbe86f770395025c78adde37d3f5abb885de6b1";
     const {data: hash, error, isPending, writeContract} = useWriteContract();
 
+    const {select, wallets, publicKey, disconnect} = useWallet();
     const {isLoading: isConfirming, isSuccess: isConfirmed} =
         useWaitForTransactionReceipt({
             hash,
@@ -58,38 +63,33 @@ export default function Content() {
             <div className={styles.reserveSection}>
                 <div className={styles.reservePanel}>
                     <div className={styles.reservePanelHeader}>
-                        <p>Reserve your Tard Sol</p>
+                        <p>LINK YOUR SOLANA ADDRESS TO YOUR PULSECHAIN ADDRESS TO RECEIVE TARD:</p>
                     </div>
                     <div className={styles.reservePanelContent}>
                         <div className={styles.panelDescription}>
                             <p>1. Generate a Solana address with https://phantom.app</p>
-                            <p>2. Send ETH, PLS, eHEX, pHEX, INC, PLSX, or Tard on either chain to
-                                0x35e4D6E3C61C3d8D19F2575355d0a3Eca0Da1944</p>
-                            <p>3. Copy the tx hash receipt from your transaction and your Solana address and paste them
-                                below. Click submit and complete the signature generation process. This signature is
-                                what proves the link between your SOL address and your Ethereum/pulsechain address.</p>
-                            <p>4. Once TARD Sol is launched, you will receive your TARD to your Solana address
+                            <p>2. Send SOL on Solana to [solana presale address]</p>
+                            {/* eslint-disable-next-line react/no-unescaped-entities */}
+                            <p>3. Click "Connect Solana", connecting to the same Solana wallet that you sent funds from
+                                in step (2).</p>
+                            {/* eslint-disable-next-line react/no-unescaped-entities */}
+                            <p>4. Click "Connect Pulsechain", to connect to the pulsechain wallet which you want TARD
+                                sent to - OR - manually enter the pulsechain wallet address you want <br></br> your TARD
+                                sent to.</p>
+                            <p>5. Once TARD is launched, you will receive your TARD to your Pulsechain address
                                 provided.</p>
                         </div>
-                        <div className={styles.addressSection}>
-                            <p>Address you sent ETH, PLS, or TARD from:</p>
-                            <p>{!isConnected ? "Connect Wallet To Address You Sent From" : address}</p>
-                        </div>
                         <div className={styles.transactionSection}>
-                            <p>Transaction Hash - this is the block explorer receipt of your transaction</p>
-                            <textarea className={styles.textSection}
-                                      onChange={e => setTransactionValue(e.target.value)} value={transactionValue}/>
-                            <w3m-button />
+                            <p>Solana address you sent SOL from:</p>
+                            <Wallets/>
                         </div>
                         <div className={styles.solSection}>
-                            <p>Solana Address - this is where your TARD Sol will be sent</p>
-                            <textarea className={styles.textSection} onChange={e => setSolValue(e.target.value)}
-                                      value={solValue}/>
+                            <p>Pulsechain address you want to receive TARD on:</p>
                             <w3m-button/>
                         </div>
                         <div className={styles.buttonSection}>
                             <button type="button" onClick={handleClick}
-                                    disabled={!isConnected || isConfirming || isPending}>{(isConfirming || isPending) ? "Confirming" : "Submit"}
+                                    disabled={!isConnected || isConfirming || isPending || !publicKey}>{(isConfirming || isPending) ? "Confirming" : "Submit"}
                             </button>
                         </div>
                     </div>

@@ -1,0 +1,10 @@
+.buttonSection {
+    color: white;
+    background: #47a1ff;
+    font-size: 15px;
+    padding: 13px;
+    border: none;
+    border-radius: 25px;
+    font-family: Inter, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: bold;
+}
